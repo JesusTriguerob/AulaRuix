@@ -35,4 +35,8 @@ export class LibroService {
   public delete(id: number): Observable<any> {
     return this.httpClient.delete<any>(this.libroURL + `delete/${id}`);
   }
+
+  public alquilar(id: number): Observable<any> {
+    return this.httpClient.get<any>(this.libroURL + `alquilar/${id}`);
+  }
 }

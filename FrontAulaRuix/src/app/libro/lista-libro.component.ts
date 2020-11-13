@@ -59,4 +59,20 @@ export class ListaLibroComponent implements OnInit {
     );
   }
 
+  alquilar(id: number) {
+    this.libroService.alquilar(id).subscribe(
+      data => {
+        this.toastr.success('Libro Alquilado', 'OK', {
+          timeOut: 3000, positionClass: 'toast-top-center'
+        });
+        this.cargarLibros();
+      },
+      err => {
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000, positionClass: 'toast-top-center',
+        });
+      }
+    );
+  }
+
 }
