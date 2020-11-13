@@ -1,0 +1,41 @@
+<app-menu></app-menu>
+<div class="container">
+    <div>
+       <img src="assets/img/usuarios.png" alt="..." width="100%" style="padding:10px">
+    </div>
+    <div class="content text-info">
+  			<h1>Lista de usuarios</h1>
+  			<hr/>
+    </div>
+    <div *ngIf="usuarios?.length == 0" class="alert alert-info">
+      No hay registros en la base de datos.
+    </div>
+    <!--<div class="table-responsive" *ngIf="usuarios?.length>0">-->
+    <div class="table-responsive">
+    <table class="table table-hover table-sm table-bordered" cellspacing="0" width="100%" >
+        <tr class="table-info text-center">
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Apellidos</th>
+          <th>DNI</th>
+          <th>Telefono</th>
+          <th>Email</th>
+          <th *ngIf="isAdmin">Acciones</th>
+        </tr>
+      <tbody>
+        <tr *ngFor="let usuario of usuarios" class="text-center">
+          <td>{{usuario.id}}</td>
+          <td>{{usuario.nombre}}</td>
+          <td>{{usuario.apellido1}} {{usuario.apellido2}}</td>
+          <td>{{usuario.dni}}</td>
+          <td>{{usuario.telefono1}}</td>
+          <td>{{usuario.email}}</td>
+          <td *ngIf="isAdmin">
+          <button class="btn btn-primary" [routerLink]="['/infoAlumno', usuario.id]"><i class="fas fa-info"></i> Ver</button> |
+          <button class="btn btn-warning" [routerLink]="['/formAlumno', usuario.id]"><i class="far fa-edit"></i> Editar</button> |
+          <button class="btn btn-danger" (click)="borrar(usuario.id)"><i class="far fa-trash-alt"></i> Eliminar</button>
+        </tr>
+    </tbody>
+    </table>
+    </div>
+  <div style="margin-top: 10px"></div>

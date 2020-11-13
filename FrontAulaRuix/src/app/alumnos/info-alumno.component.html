@@ -1,0 +1,94 @@
+<app-menu></app-menu>
+<div class="container">
+  <div class="row" style="padding:10px">
+    <div class="col-md-4">
+      <div class="card card-user">
+        <div class="image">
+        </div>
+        <div class="card-body text-center">
+          <div class="author">
+            <a href="#">
+              <img class="avatar border-gray " src="assets/img/default.png" alt="..." width="200px">
+            </a>
+          </div>
+            <h2 style="padding:5px"class="description text-info">{{usuario.nombre}} {{usuario.apellido1}} {{usuario.apellido2}}</h2>
+            <h3 class="text-info">Rol: {{usuario.rolPrincipal}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card card-user">
+        <div class="card-header">
+          <h2 class="card-title text-info text-center">INFORMACIÓN USUARIO</h2>
+        </div>
+        <div class="card-body">
+          <form>
+
+            <div class="row">
+              <div class="col-md-5 pr-1">
+                <div class="form-group">
+                  <label>DNI</label>
+                    <input type="text" name="dni" id="dni" class="form-control" [(ngModel)]="usuario.dni" disabled>
+                </div>
+              </div>
+              <div class="col-md-3 px-1">
+                <div class="form-group">
+                  <label>Telefono1:</label>
+                <input type="text" name="telefono1" id="telefono1" class="form-control" [(ngModel)]="usuario.telefono1" disabled>
+                </div>
+              </div>
+              <div class="col-md-3 pr-1">
+                <div class="form-group">
+                  <label>Fecha Nacimiento:</label>
+                    <input type="text" name="fechaNac" id="fechaNac" class="form-control" [(ngModel)]="usuario.fechaNac" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6 pr-1">
+                <div class="form-group">
+                  <label>Dirección:</label>
+                <input type="text" name="calle" id="calle" class="form-control" [(ngModel)]="usuario.calle" disabled>
+                </div>
+              </div>
+              <div class="col-md-6 pl-1">
+                <div class="form-group">
+                  <label>Número:</label>
+                <input type="text" name="numCalle" id="numCalle" class="form-control" [(ngModel)]="usuario.numCalle" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Localidad:</label>
+                    <input type="text" name="localidad" id="localidad" class="form-control" [(ngModel)]="usuario.localidad" disabled>
+                </div>
+              </div>
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Provincia:</label>
+                    <input type="text" name="provincia" id="provincia" class="form-control" [(ngModel)]="usuario.provincia" disabled>
+                </div>
+              </div>
+              <div class="col-md-4 pr-1">
+                <div class="form-group">
+                  <label>Cod Postal:</label>
+                    <input type="text" name="codigoPostal" id="codigoPostal" class="form-control" [(ngModel)]="usuario.codigoPostal" disabled>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-1 text-left">
+                <button class="btn btn-rounded btn-outline-danger" type="button" [routerLink] = "['/alumnos']">Volver</button>
+              </div>
+              <div class="col-sm-1 text-left">
+                  <button type="button" class="btn btn-rounded btn-warning" [routerLink]="['/formAlumno', usuario.id]"  style="margin-left:20px"> Editar </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
