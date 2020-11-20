@@ -13,17 +13,28 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class FormALumnoComponent implements OnInit {
 
   usuario: Usuario = null;
+  roles: string[];
+  isAdmin = false;
+  nombreUsuario: string;
 
   constructor(private usuarioService: UsuarioService,
     private activatedRoute: ActivatedRoute,
+    private tokenService: TokenService,
     private toastr: ToastrService,
     private router: Router) { }
 
   ngOnInit() {
+    this.roles = this.tokenService.getAuthorities();
+    this.roles.forEach(rol => {
+      if (rol === 'ROLE_ADMIN') {
+        this.isAdmin = true;
+      }
+    });
     const id = this.activatedRoute.snapshot.params.id;
     this.usuarioService.detail(id).subscribe(
       data => {
         this.usuario = data;
+        this.nombreUsuario = this.tokenService.getUserName();
       },
       err => {
         this.toastr.error(err.error.mensaje, 'Fail', {

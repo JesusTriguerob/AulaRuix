@@ -8,8 +8,12 @@
             </div>
             <ul class="list-group list-group-flush">
               <li class="list-group-item"><b>ID: </b>{{libro.id}}</li>
-              <li class="list-group-item"><b>ID: </b>{{libro.nombre}}</li>
-              <li class="list-group-item"><b>ID: </b>{{libro.precio}}€</li>
+              <li class="list-group-item"><b>Nombre: </b>{{libro.nombre}}</li>
+              <li class="list-group-item"><b>Estado: </b>{{libro.estado}}</li>
+              <li class="list-group-item"><b>Alquilado: </b>{{libro.alquilado}}</li>
+              <li class="list-group-item"><b>Usuario: </b>{{libro.usuario}}</li>
+              <li class="list-group-item"><b>Fecha Alquiler: </b>{{libro.fechaAlquiler}}</li>
+              <li class="list-group-item"><b>Fecha Devolucion: </b>{{libro.fechaDevolucion}}</li>
             </ul>
             <div class="card-footer">
                 <button class="btn btn-outline-primary btn-block" (click)="volver()"><i class="fas fa-arrow-alt-circle-left"></i> Volver</button>
@@ -19,3 +23,4 @@
     </div>
 </div>
 </div>
+<app-footer></app-footer>

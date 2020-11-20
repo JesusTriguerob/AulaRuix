@@ -13,9 +13,12 @@ export class NuevoLibroComponent implements OnInit {
 
   nombre = '';
   categoria = '';
-  estado = '';
-  alquilado = '';
+  estado = 0;
+  alquilado = 1;
   usuario = '';
+  fechaAlquiler = '';
+  fechaDevolucion = '';
+  vecesAlquilado = 0;
 
   constructor(
     private libroService: LibroService,
@@ -27,7 +30,7 @@ export class NuevoLibroComponent implements OnInit {
   }
 
   onCreate(): void {
-    const libro = new Libro(this.nombre, this.categoria,this.estado,this.alquilado,this.usuario);
+    const libro = new Libro(this.nombre, this.categoria,this.estado,this.alquilado,this.usuario,this.fechaAlquiler,this.fechaDevolucion, this.vecesAlquilado);
     this.libroService.save(libro).subscribe(
       data => {
         this.toastr.success('Libro Creado', 'OK', {

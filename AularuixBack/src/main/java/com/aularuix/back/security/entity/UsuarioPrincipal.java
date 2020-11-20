@@ -5,14 +5,19 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 public class UsuarioPrincipal implements UserDetails {
     private String nombre;
     private String nombreUsuario;
     private String email;
     private String password;
+    
     private Collection<? extends GrantedAuthority> authorities;
 
     public UsuarioPrincipal(String nombre, String nombreUsuario, String email, String password, Collection<? extends GrantedAuthority> authorities) {
@@ -21,6 +26,7 @@ public class UsuarioPrincipal implements UserDetails {
         this.email = email;
         this.password = password;
         this.authorities = authorities;
+ 
     }
 
     public static UsuarioPrincipal build(Usuario usuario){
@@ -72,4 +78,6 @@ public class UsuarioPrincipal implements UserDetails {
     public String getEmail() {
         return email;
     }
+    
+    
 }

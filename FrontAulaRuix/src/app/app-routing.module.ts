@@ -11,6 +11,9 @@ import { IndexComponent } from './index/index.component';
 import { LoginComponent } from './auth/login.component';
 import { RegistroComponent } from './auth/registro.component';
 import { LibroGuardService as guard } from './guards/libro-guard.service';
+import { AulaComponent} from './aula/aula.component';
+import { NuevoAulaComponent } from './aula/nuevo-aula.component';
+
 
 
 
@@ -24,9 +27,11 @@ const routes: Routes = [
   { path: 'editar/:id', component: EditarLibroComponent, canActivate: [guard], data: { expectedRol: ['admin'] } },
   { path: 'alumnos', component: AlumnosComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user'] } },
   { path: 'formAlumno', component: FormALumnoComponent, canActivate: [guard], data: { expectedRol: ['admin'] } },
-  { path: 'formAlumno/:id', component: FormALumnoComponent, canActivate: [guard], data: { expectedRol: ['admin'] } },
+  { path: 'formAlumno/:id', component: FormALumnoComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user'] } },
   { path: 'infoAlumno/:id', component: InfoAlumnoComponent, canActivate: [guard], data: { expectedRol: ['admin'] } },
-  { path: '**', redirectTo: '', pathMatch: 'full' }
+  { path: 'aula', component: AulaComponent, canActivate: [guard], data: { expectedRol:['admin', 'user']  } },
+  { path: 'aula/nuevo', component: NuevoAulaComponent , canActivate: [guard], data: { expectedRol:['admin']} },
+  { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 
 @NgModule({

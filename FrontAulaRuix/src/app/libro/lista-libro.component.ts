@@ -14,6 +14,7 @@ export class ListaLibroComponent implements OnInit {
   libros: Libro[] = [];
   roles: string[];
   isAdmin = false;
+  nombreUsuario: string;
 
   constructor(
     private libroService: LibroService,
@@ -23,6 +24,7 @@ export class ListaLibroComponent implements OnInit {
 
   ngOnInit() {
     this.cargarLibros();
+    this.nombreUsuario = this.tokenService.getUserName();
     this.roles = this.tokenService.getAuthorities();
     this.roles.forEach(rol => {
       if (rol === 'ROLE_ADMIN') {
@@ -35,7 +37,6 @@ export class ListaLibroComponent implements OnInit {
     this.libroService.lista().subscribe(
       data => {
         this.libros = data;
-        console.log(this.libros);
       },
       err => {
         console.log(err);
@@ -62,9 +63,6 @@ export class ListaLibroComponent implements OnInit {
   alquilar(id: number) {
     this.libroService.alquilar(id).subscribe(
       data => {
-        this.toastr.success('Libro Alquilado', 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
         this.cargarLibros();
       },
       err => {

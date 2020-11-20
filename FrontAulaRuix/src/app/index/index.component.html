@@ -1,5 +1,63 @@
 <app-menu></app-menu>
 <div class="container text-center">
-    <div *ngIf="isLogged; else loggedOut"><h2>Bienvenido {{nombreUsuario}}</h2></div>
-    <ng-template #loggedOut><h2>No has iniciado sesión</h2></ng-template>
+    <div *ngIf="isLogged; else loggedOut">
+      <h2 style="margin-top:25px" class=" display-4 text-info">Bienvenido, {{nombreUsuario}}</h2>
+      <hr class="bg-info">
+      <h5 style="margin-top:25px" class="text-info">PANEL DE CONTROL</h5>
+      <hr class="bg-info">
+      <div class="row" style="margin-top:25px">
+        <div class="col-sm-6">
+          <div class="card text-white bg-info">
+            <div class="card-header">Usuarios</div>
+              <div class="card-body">
+              <h5 class="card-title">Listado de usuarios registrados en el sistema</h5>
+              <button type="button"  [routerLink]="['/alumnos']" class="btn btn-outline-light btn-lg btn-block">Ver listado</button>
+              </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card text-white bg-info">
+            <div class="card-header">Biblioteca</div>
+              <div class="card-body">
+              <h5 class="card-title">Biblioteca del centro</h5>
+              <button type="button"  [routerLink]="['/lista']" class="btn btn-outline-light btn-lg btn-block">Ir a la biblioteca</button>
+              </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" style="margin-top:29px">
+        <div class="col-sm-4">
+          <div class="card text-white bg-info">
+            <div class="card-header">Zonas Comunes</div>
+              <div class="card-body">
+              <h5 class="card-title">¡Reserva todas las instalaciones del centro!</h5>
+              <button type="button"  [routerLink]="['/aula']" class="btn btn-outline-light btn-lg btn-block">Ir al horario</button>
+              </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card text-white bg-info">
+            <div class="card-header">Header</div>
+              <div class="card-body">
+              <h5 class="card-title">Info card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="card text-white bg-info">
+            <div class="card-header">Header</div>
+              <div class="card-body">
+              <h5 class="card-title">Info card title</h5>
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+              </div>
+          </div>
+        </div>
+      </div>
 </div>
+    <ng-template #loggedOut>
+    <meta http-equiv="refresh" content="0; url=http://localhost:4200/login" />
+    </ng-template>
+</div>
+
+<app-footer></app-footer>

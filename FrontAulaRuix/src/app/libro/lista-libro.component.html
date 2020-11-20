@@ -8,7 +8,7 @@
   			<hr/>
     </div>
     <div class="table-responsive">
-      <table class="table table-hover table-sm table-bordered" cellspacing="0" width="100%">
+      <table class="table table-hover table-sm table-bordered">
         <tr  class="table-info text-center">
           <th scope="col">Id</th>
           <th scope="col">Nombre</th>
@@ -16,6 +16,8 @@
           <th scope="col">Estado</th>
           <th scope="col">Alquilado</th>
           <th scope="col">Usuario</th>
+          <th scope="col">Fecha alquiler</th>
+          <th scope="col">Fecha devolucion</th>
           <th scope="col">Alquilar</th>
           <th scope="col">Ver</th>
           <th scope="col" *ngIf="isAdmin"> Editar | Borrar</th>
@@ -32,11 +34,17 @@
           <td *ngIf="libro.alquilado == 'DISPONIBLE'" class="text-success">{{libro.alquilado}}</td>
           <td *ngIf="libro.alquilado == 'ALQUILADO'" class="text-danger">{{libro.alquilado}}</td>
           <td>{{libro.usuario}}</td>
-          <td><button class="btn btn-success" (click)="alquilar(libro.id)"><i class="fas fa-plus"></i> Alquilar</button></td>
-          <td><button class="btn btn-primary" routerLink="/detalle/{{libro.id}}"><i class="fas fa-info"></i> Ver</button></td>
+          <td>{{libro.fechaAlquiler}}</td>
+          <td>{{libro.fechaDevolucion}}</td>
+          <td *ngIf="libro.alquilado == 'DISPONIBLE'"><button class="btn btn-success" (click)="alquilar(libro.id)">Alquilar</button></td>
+          <td *ngIf="libro.usuario === nombreUsuario; else loggedOut"><button class="btn btn-danger" (click)="alquilar(libro.id)">Devolver</button></td>
+          <ng-template #loggedOut>
+          <td *ngIf="libro.usuario !== ''"><button class="btn btn-danger" (click)="alquilar(libro.id)" disabled>Devolver</button></td>
+          </ng-template>
+          <td><button class="btn btn-primary" routerLink="/detalle/{{libro.id}}"><i class="fas fa-info"></i></button></td>
           <td *ngIf="isAdmin">
-          <button class="btn btn-warning" routerLink="/editar/{{libro.id}}"><i class="far fa-edit"></i> Editar</button> |
-          <button class="btn btn-danger" (click)="borrar(libro.id)"><i class="far fa-trash-alt"></i> Eliminar</button></td>
+          <button class="btn btn-warning" routerLink="/editar/{{libro.id}}"><i class="far fa-edit"></i></button> |
+          <button class="btn btn-danger" (click)="borrar(libro.id)"><i class="far fa-trash-alt"></i></button></td>
         </tr>
       </tbody>
   </table>
@@ -67,3 +75,5 @@
 
 
 </div>
+
+<app-footer></app-footer>

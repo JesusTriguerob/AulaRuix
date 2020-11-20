@@ -9,9 +9,14 @@
                     [(ngModel)]="libro.nombre" required>
                 </div>
                 <div class="form-group">
-                    <label for="precio">Precio</label>
-                    <input type="number" class="form-control" id="precio" name="precio"
-                    [(ngModel)]="libro.precio" required>
+                    <label for="nombre">Categoria</label>
+                    <select  type="text" class="form-control" id="categoria" name="categoria" [(ngModel)]="libro.categoria">
+                      <option value="CIENCIA_FICCIÓN">Ciencia Ficción</option>
+                       <option value="AVENTURAS">Aventuras</option>
+                       <option value="INFANTIL">Infantil</option>
+                       <option value="HISTORIA">Historia</option>
+                       <option value="EDUCACIÓN">Educación</option>
+                    </select>
                 </div>
                 <button class="btn btn-outline-success btn-block" [disabled]="!f.valid">
                     <i class="fas fa-pencil-alt"></i> Actualizar</button>
@@ -21,3 +26,4 @@
         </div>
     </div>
 </div>
+<app-footer></app-footer>

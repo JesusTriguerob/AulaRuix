@@ -61,10 +61,13 @@ public class UsuarioController {
             return new ResponseEntity(new Mensaje("el primer apellido es obligatorio"), HttpStatus.BAD_REQUEST);
         if(StringUtils.isBlank(usuarioDto.getDni()))
             return new ResponseEntity(new Mensaje("el dni es obligatorio"), HttpStatus.BAD_REQUEST);
+        
         Usuario Usuario = new Usuario(usuarioDto.getNombre(), usuarioDto.getApellido1(), usuarioDto.getApellido2(), usuarioDto.getDni(), usuarioDto.getCalle(),
         		usuarioDto.getNumCalle(), usuarioDto.getTelefono1(), usuarioDto.getFechaNac(), usuarioDto.getLocalidad(),usuarioDto.getProvincia(), usuarioDto.getCodigoPostal(),
-        		usuarioDto.getNombreUsuario(), usuarioDto.getEmail(), usuarioDto.getPassword(), usuarioDto.getRoles(),usuarioDto.getRolPrincipal());
+        		usuarioDto.getNombreUsuario(), usuarioDto.getEmail(), usuarioDto.getPassword(), usuarioDto.getRoles(),usuarioDto.getRolPrincipal(), usuarioDto.getLibros());
+       
         usuarioService.save(Usuario);
+        
         return new ResponseEntity(new Mensaje("Usuario creado"), HttpStatus.OK);
     }
 

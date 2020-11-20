@@ -22,6 +22,9 @@ import { IndexComponent } from './index/index.component';
 import { AlumnosComponent } from './alumnos/alumnos.component';
 import { FormALumnoComponent } from './alumnos/form-alumno.component';
 import { InfoAlumnoComponent } from './alumnos/info-alumno.component';
+import { FooterComponent } from './footer/footer.component';
+import { AulaComponent } from './aula/aula.component';
+import { NuevoAulaComponent } from './aula/nuevo-aula.component';
 
 
 
@@ -38,7 +41,10 @@ import { InfoAlumnoComponent } from './alumnos/info-alumno.component';
     IndexComponent,
     AlumnosComponent,
     FormALumnoComponent,
-    InfoAlumnoComponent
+    InfoAlumnoComponent,
+    FooterComponent,
+    AulaComponent,
+    NuevoAulaComponent
   ],
   imports: [
     BrowserModule,

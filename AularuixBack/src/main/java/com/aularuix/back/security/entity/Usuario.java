@@ -13,9 +13,12 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.aularuix.back.entity.Hora;
+import com.aularuix.back.entity.Libro;
 import com.sun.istack.NotNull;
 
 @Entity
@@ -64,22 +67,47 @@ public class Usuario {
     @JoinTable(name = "usuario_rol", joinColumns = @JoinColumn(name = "usuario_id"),
     inverseJoinColumns = @JoinColumn(name = "rol_id"))
     private List<Rol> roles = new ArrayList<>();
-
+    
+    @OneToMany
+    @JoinTable(name = "usuario_libro", joinColumns = @JoinColumn(name = "usuario_id"),
+    inverseJoinColumns = @JoinColumn(name = "libro_id"))
+    private List<Libro> libros = new ArrayList<>();
+    
     private String rolPrincipal;
     
     public Usuario() {
     }
 
-    public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password) {
+    public Usuario(@NotNull String nombre, @NotNull String nombreUsuario, @NotNull String email, @NotNull String password, String apellido1,
+			String apellido2, String dni, Date fechaNac, String localidad) {
         this.nombre = nombre;
         this.nombreUsuario = nombreUsuario;
         this.email = email;
         this.password = password;
+        this.apellido1 = apellido1;
+        this.apellido2 = apellido2;
+        this.dni = dni;
+        this.fechaNac = fechaNac;
+        this.localidad = localidad;
     }
    
+	public Usuario(String nombre, String apellido1, String apellido2, String dni, Date fechaNac, String localidad,
+			String nombreUsuario, String email, String password) {
+		super();
+		this.nombre = nombre;
+		this.apellido1 = apellido1;
+		this.apellido2 = apellido2;
+		this.dni = dni;
+		this.fechaNac = fechaNac;
+		this.localidad = localidad;
+		this.nombreUsuario = nombreUsuario;
+		this.email = email;
+		this.password = password;
+	}
+
 	public Usuario(@NotNull String nombre, String apellido1, String apellido2, String dni, String calle,
 			String numCalle, String telefono1, Date fechaNac, String localidad, String provincia, String codigoPostal,
-			@NotNull String nombreUsuario, @NotNull String email, @NotNull String password, @NotNull List<Rol> roles, String rolPrincipal) {
+			@NotNull String nombreUsuario, @NotNull String email, @NotNull String password, @NotNull List<Rol> roles, String rolPrincipal, List<Libro> libros) {
 		super();
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -97,8 +125,10 @@ public class Usuario {
 		this.password = password;
 		this.roles = roles;
 		this.rolPrincipal = rolPrincipal;
+		this.libros = libros;
 	}
 
+	
 	public int getId() {
         return id;
     }
@@ -234,6 +264,15 @@ public class Usuario {
 	public void setRolPrincipal(String rolPrincipal) {
 		this.rolPrincipal = rolPrincipal;
 	}
+
+	public List<Libro> getLibros() {
+		return libros;
+	}
+
+	public void setLibros(List<Libro> libros) {
+		this.libros = libros;
+	}
     
+	
 	
 }

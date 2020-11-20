@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.validation.constraints.NotBlank;
 
+import com.aularuix.back.entity.Libro;
 import com.aularuix.back.security.entity.Rol;
 
 public class UsuarioDto {
@@ -29,13 +30,15 @@ public class UsuarioDto {
     private String email;
     private List<Rol> roles = new ArrayList();
     private String rolPrincipal;
+    private List<Libro> libros = new ArrayList();
     
 	public UsuarioDto() {
 	}
 
 	public UsuarioDto(@NotBlank String nombre, @NotBlank String apellido1, String apellido2, @NotBlank String dni,
 			String calle, String numCalle, String telefono1, Date fechaNac, String localidad, String provincia,
-			String codigoPostal, String nombreUsuario, String password, String email, List<Rol> roles, String rolPrincipal) {
+			String codigoPostal, String nombreUsuario, String password, String email, List<Rol> roles, String rolPrincipal,
+			List<Libro> libros) {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
@@ -52,6 +55,7 @@ public class UsuarioDto {
 		this.email = email;
 		this.roles = roles;
 		this.rolPrincipal = rolPrincipal;
+		this.libros = libros;
 	}
 
 	public String getNombre() {
@@ -181,5 +185,15 @@ public class UsuarioDto {
 	public void setRolPrincipal(String rolPrincipal) {
 		this.rolPrincipal = rolPrincipal;
 	}
+
+	public List<Libro> getLibros() {
+		return libros;
+	}
+
+	public void setLibros(List<Libro> libros) {
+		this.libros = libros;
+	}
+	
+	
     
 }

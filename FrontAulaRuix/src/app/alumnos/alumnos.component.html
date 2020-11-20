@@ -20,7 +20,7 @@
           <th>DNI</th>
           <th>Telefono</th>
           <th>Email</th>
-          <th *ngIf="isAdmin">Acciones</th>
+          <th>Acciones</th>
         </tr>
       <tbody>
         <tr *ngFor="let usuario of usuarios" class="text-center">
@@ -30,12 +30,15 @@
           <td>{{usuario.dni}}</td>
           <td>{{usuario.telefono1}}</td>
           <td>{{usuario.email}}</td>
-          <td *ngIf="isAdmin">
-          <button class="btn btn-primary" [routerLink]="['/infoAlumno', usuario.id]"><i class="fas fa-info"></i> Ver</button> |
-          <button class="btn btn-warning" [routerLink]="['/formAlumno', usuario.id]"><i class="far fa-edit"></i> Editar</button> |
-          <button class="btn btn-danger" (click)="borrar(usuario.id)"><i class="far fa-trash-alt"></i> Eliminar</button>
+          <td *ngIf="isAdmin || nombreUsuario == usuario.nombreUsuario">
+          <button *ngIf="isAdmin" class="btn btn-primary" [routerLink]="['/infoAlumno', usuario.id]"><i class="fas fa-info"></i> Ver |</button>
+          <button *ngIf="isAdmin || nombreUsuario == usuario.nombreUsuario" class="btn btn-warning" [routerLink]="['/formAlumno', usuario.id]"><i class="far fa-edit"></i> Editar</button>
+          <button *ngIf="isAdmin" class="btn btn-danger" (click)="borrar(usuario.id)"><i class="far fa-trash-alt"></i> Eliminar |</button>
         </tr>
     </tbody>
     </table>
     </div>
+
   <div style="margin-top: 10px"></div>
+
+  <app-footer></app-footer>

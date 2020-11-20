@@ -1,5 +1,8 @@
 package com.aularuix.back.dto;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 import javax.validation.constraints.NotBlank;
 
 import com.aularuix.back.enums.Alquilado;
@@ -14,17 +17,22 @@ public class LibroDto {
     private Estado estado;
     private Alquilado alquilado;
     private String usuario;
-    
+    private LocalDate fechaAlquiler;
+    private LocalDate fechaDevolucion;
+
     public LibroDto() {
     }
 
-    public LibroDto(@NotBlank String nombre, Categoria categoria, Estado estado, Alquilado alquilado, String usuario) {
+	public LibroDto(@NotBlank String nombre, Categoria categoria, Estado estado, Alquilado alquilado, String usuario,
+			LocalDate fechaAlquiler, LocalDate fechaDevolucion) {
 		super();
 		this.nombre = nombre;
 		this.categoria = categoria;
 		this.estado = estado;
 		this.alquilado = alquilado;
 		this.usuario = usuario;
+		this.fechaAlquiler = fechaAlquiler;
+		this.fechaDevolucion = fechaDevolucion;
 	}
 
 	public String getNombre() {
@@ -67,4 +75,21 @@ public class LibroDto {
 		this.usuario = usuario;
 	}
 
+	public LocalDate getFechaAlquiler() {
+		return fechaAlquiler;
+	}
+
+	public void setFechaAlquiler(LocalDate fechaAlquiler) {
+		this.fechaAlquiler = fechaAlquiler;
+	}
+
+	public LocalDate getFechaDevolucion() {
+		return fechaDevolucion;
+	}
+
+	public void setFechaDevolucion(LocalDate fechaDevolucion) {
+		this.fechaDevolucion = fechaDevolucion;
+	}
+
+	
 }

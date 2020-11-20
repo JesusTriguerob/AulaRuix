@@ -228,10 +228,15 @@
         <button class="btn btn-info btn-block" role="button" (click)='create()' *ngIf="!usuario.id else elseBlock" [disabled]="!usuarioForm.form.valid">Crear alumno</button>
 
         <ng-template #elseBlock>
+          <div *ngIf="isAdmin || nombreUsuario == usuario.nombreUsuario">
+
           <button class="btn btn-info" role="button" (click)='onUpdate()' [disabled]="!usuarioForm.form.valid">Editar alumno</button>
+          </div>
         </ng-template>
       </div>
     </div>
 
   </form>
 </div>
+
+<app-footer></app-footer>

@@ -14,6 +14,7 @@ export class AlumnosComponent implements OnInit {
 usuarios: Usuario[];
 roles: string[];
 isAdmin = false;
+nombreUsuario: string;
 
   constructor(private usuarioService: UsuarioService,
     private toastr: ToastrService,
@@ -22,6 +23,7 @@ isAdmin = false;
 
   ngOnInit() {
   this.cargarUsuarios();
+  this.nombreUsuario = this.tokenService.getUserName();
   this.roles = this.tokenService.getAuthorities();
   this.roles.forEach(rol => {
     if (rol === 'ROLE_ADMIN') {
