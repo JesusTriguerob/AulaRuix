@@ -1,5 +1,6 @@
 package com.aularuix.back.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -19,7 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.aularuix.back.dto.Mensaje;
 import com.aularuix.back.dto.UsuarioDto;
+import com.aularuix.back.security.entity.Rol;
 import com.aularuix.back.security.entity.Usuario;
+import com.aularuix.back.security.enums.RolNombre;
+import com.aularuix.back.security.service.RolService;
 import com.aularuix.back.security.service.UsuarioService;
 
 @RestController
@@ -29,6 +33,9 @@ public class UsuarioController {
 
 	@Autowired
 	UsuarioService usuarioService;
+
+	@Autowired
+	RolService rolService;
 
 	@GetMapping("/lista")
 	public ResponseEntity<List<Usuario>> list() {
@@ -46,32 +53,34 @@ public class UsuarioController {
 
 	@GetMapping("/detailname/{nombre}")
 	public ResponseEntity<Usuario> getByNombre(@PathVariable("nombre") String nombre) {
-		if (!usuarioService.existsByNombre(nombre))
+		if (usuarioService.getByNombreUsuario(nombre).isEmpty())
 			return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
-		Usuario Usuario = usuarioService.getByNombre(nombre).get();
+		Usuario Usuario = usuarioService.getByNombreUsuario(nombre).get();
 		return new ResponseEntity(Usuario, HttpStatus.OK);
 	}
 
 	@PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody UsuarioDto usuarioDto){
-        if(StringUtils.isBlank(usuarioDto.getNombre()))
-            return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
-        if(StringUtils.isBlank(usuarioDto.getApellido1()))
-            return new ResponseEntity(new Mensaje("el primer apellido es obligatorio"), HttpStatus.BAD_REQUEST);
-        if(StringUtils.isBlank(usuarioDto.getDni()))
-            return new ResponseEntity(new Mensaje("el dni es obligatorio"), HttpStatus.BAD_REQUEST);
-        
-        Usuario Usuario = new Usuario(usuarioDto.getNombre(), usuarioDto.getApellido1(), usuarioDto.getApellido2(), usuarioDto.getDni(), usuarioDto.getCalle(),
-        		usuarioDto.getNumCalle(), usuarioDto.getTelefono1(), usuarioDto.getFechaNac(), usuarioDto.getLocalidad(),usuarioDto.getProvincia(), usuarioDto.getCodigoPostal(),
-        		usuarioDto.getNombreUsuario(), usuarioDto.getEmail(), usuarioDto.getPassword(), usuarioDto.getRoles(),usuarioDto.getRolPrincipal(), usuarioDto.getLibros());
-       
-        usuarioService.save(Usuario);
-        
-        return new ResponseEntity(new Mensaje("Usuario creado"), HttpStatus.OK);
-    }
+	@PostMapping("/create")
+	public ResponseEntity<?> create(@RequestBody UsuarioDto usuarioDto) {
+		if (StringUtils.isBlank(usuarioDto.getNombre()))
+			return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
+		if (StringUtils.isBlank(usuarioDto.getApellido1()))
+			return new ResponseEntity(new Mensaje("el primer apellido es obligatorio"), HttpStatus.BAD_REQUEST);
+		if (StringUtils.isBlank(usuarioDto.getDni()))
+			return new ResponseEntity(new Mensaje("el dni es obligatorio"), HttpStatus.BAD_REQUEST);
 
-	@PreAuthorize("hasRole('ADMIN')")
+		Usuario Usuario = new Usuario(usuarioDto.getNombre(), usuarioDto.getApellido1(), usuarioDto.getApellido2(),
+				usuarioDto.getDni(), usuarioDto.getCalle(), usuarioDto.getNumCalle(), usuarioDto.getTelefono1(),
+				usuarioDto.getFechaNac(), usuarioDto.getLocalidad(), usuarioDto.getProvincia(),
+				usuarioDto.getCodigoPostal(), usuarioDto.getNombreUsuario(), usuarioDto.getEmail(),
+				usuarioDto.getPassword(), usuarioDto.getRoles(), usuarioDto.getRolPrincipal(), usuarioDto.getLibros(),
+				usuarioDto.isInComedor());
+
+		usuarioService.save(Usuario);
+
+		return new ResponseEntity(new Mensaje("Usuario creado"), HttpStatus.OK);
+	}
+
 	@PutMapping("/update/{id}")
 	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody UsuarioDto usuarioDto) {
 		if (!usuarioService.existsById(id))
@@ -93,6 +102,15 @@ public class UsuarioController {
 		usuario.setLocalidad(usuarioDto.getLocalidad());
 		usuario.setProvincia(usuarioDto.getProvincia());
 		usuario.setCodigoPostal(usuarioDto.getCodigoPostal());
+		List<Rol> roles = new ArrayList();
+		if (usuarioDto.getRolPrincipal().contains("Admin")) {
+			roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
+		}
+		if (usuarioDto.getRolPrincipal().contains("Profesor")) {
+			roles.add(rolService.getByRolNombre(RolNombre.ROLE_PROF).get());
+		}
+		usuario.setRoles(roles);
+		usuario.setRolPrincipal(usuarioDto.getRolPrincipal());
 		usuarioService.save(usuario);
 		return new ResponseEntity(new Mensaje("Usuario actualizado"), HttpStatus.OK);
 	}

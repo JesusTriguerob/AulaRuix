@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aularuix.back.entity.Aula;
+import com.aularuix.back.entity.ZonaComun;
 import com.aularuix.back.entity.Hora;
-import com.aularuix.back.repository.AulaRepository;
+import com.aularuix.back.repository.ZonaComunRepository;
 import com.aularuix.back.repository.HoraRepository;
 
 @Service

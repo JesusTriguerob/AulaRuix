@@ -195,7 +195,7 @@
                   <div class="form-group row">
                       <label for="nombre" class="col-form-label col-sm-4 text-info">Rol de usuario*:</label>
                     <div class="col-sm-8">
-                      <select  type="text" class="form-control" name="rolPrincipal"  [(ngModel)]="usuario.rolPrincipal">
+                      <select *ngIf="isAdmin" type="text" class="form-control" name="rolPrincipal"  [(ngModel)]="usuario.rolPrincipal" >
                         <option value="Alumno">Alumno</option>
                          <option value="Profesor">Profesor</option>
                          <option value="Administracion">Administración</option>

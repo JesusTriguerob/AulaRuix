@@ -22,6 +22,9 @@ export class LibroGuardService implements CanActivate {
       if (rol === 'ROLE_ADMIN') {
         this.realRol = 'admin';
       }
+      if (rol === 'ROLE_PROF') {
+        this.realRol = 'profesor'
+      }
     });
     if (!this.tokenService.getToken() || expectedRol.indexOf(this.realRol) === -1) {
       this.router.navigate(['/']);

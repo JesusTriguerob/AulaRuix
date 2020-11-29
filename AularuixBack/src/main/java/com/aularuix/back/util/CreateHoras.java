@@ -7,20 +7,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import com.aularuix.back.entity.Aula;
+import com.aularuix.back.entity.ZonaComun;
 import com.aularuix.back.entity.Hora;
 import com.aularuix.back.enums.Reservado;
-import com.aularuix.back.service.AulaService;
+import com.aularuix.back.service.ZonaComunService;
 import com.aularuix.back.service.HoraService;
 
 @Component
 public class CreateHoras implements CommandLineRunner {
 
-	@Autowired
-	AulaService aulaService;
-	
-	@Autowired
-	HoraService horaService;
+//	@Autowired
+//	ZonaComunService aulaService;
+//	
+//	@Autowired
+//	HoraService horaService;
 	
 	@Override
 	public void run(String... args) throws Exception {

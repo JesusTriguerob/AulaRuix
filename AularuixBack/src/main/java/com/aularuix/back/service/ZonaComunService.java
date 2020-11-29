@@ -7,34 +7,34 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.aularuix.back.entity.Aula;
-import com.aularuix.back.repository.AulaRepository;
+import com.aularuix.back.entity.ZonaComun;
+import com.aularuix.back.repository.ZonaComunRepository;
 
 @Service
 @Transactional
-public class AulaService {
+public class ZonaComunService {
 	
 	@Autowired
-	AulaRepository aulaRepository;
+	ZonaComunRepository zonaComunRepository;
 	
-	public List<Aula> list(){
-        return aulaRepository.findAll();
+	public List<ZonaComun> list(){
+        return zonaComunRepository.findAll();
     }
 
-    public Optional<Aula> getOne(int id){
-        return aulaRepository.findById(id);
+    public Optional<ZonaComun> getOne(int id){
+        return zonaComunRepository.findById(id);
     }
 
-    public void  save(Aula aula){
-    	aulaRepository.save(aula);
+    public void  save(ZonaComun aula){
+    	zonaComunRepository.save(aula);
     }
 
     public void delete(int id){
-    	aulaRepository.deleteById(id);
+    	zonaComunRepository.deleteById(id);
     }
 
     public boolean existsById(int id){
-        return aulaRepository.existsById(id);
+        return zonaComunRepository.existsById(id);
     }
 
 }

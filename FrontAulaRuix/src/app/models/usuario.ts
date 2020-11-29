@@ -17,5 +17,6 @@ export class Usuario {
   password: string;
   curso: string;
   rolPrincipal: string;
+  inComedor: string;
 
 }

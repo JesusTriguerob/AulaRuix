@@ -1,0 +1,42 @@
+<app-menu></app-menu>
+<div class="container">
+    <div>
+       <img src="assets/img/usuarios.png" alt="..." width="100%" style="padding:10px">
+    </div>
+    <div class="content text-info">
+  			<h1>Actividades extraescolares</h1>
+  			<hr/>
+    </div>
+
+    <div class="card">
+      <h5 class="card-header bg-info text-white"><i class="fas fa-utensils"></i> Comedor</h5>
+      <div class="card-body">
+        <h5 class="card-title">Inscribite en el comedor del centro</h5>
+        <p class="card-text">¡Disponibilidad de dietas sin gluten y otros alergenos!</p>
+        <h6 *ngIf="isComedor; else noComedor" class="text-danger">Ya estas subscrito al comedor, deseas eliminar tu subscripcion? pulse <button type="button" class="btn btn-danger btn-sm" (click)="desInscribe()">AQUI</button></h6>
+        <ng-template #noComedor>
+          <a routerLink="/comedor"  class="btn btn-lg btn-success">Inscribirme</a>
+        </ng-template>
+      </div>
+    </div>
+    <br>
+    <div class="card">
+      <h5 class="card-header bg-info text-white"><i class="fas fa-bus"></i> Autobus escolar</h5>
+      <div class="card-body">
+        <h5 class="card-title">Recogida y vuelta de casa del alumno al centro</h5>
+        <p class="card-text"></p>
+        <a href="#" class="btn btn-primary">Inscribirme</a>
+      </div>
+    </div>
+    <br>
+    <div class="card">
+      <h5 class="card-header bg-info text-white"><i class="fas fa-chess-queen"></i> Ajedrez</h5>
+      <div class="card-body">
+        <h5 class="card-title">Clases de ajedrez</h5>
+        <p class="card-text">¡Potencia la memoria!</p>
+        <a href="#" class="btn btn-primary">Inscribirme</a>
+      </div>
+    </div>
+
+</div>
+<app-footer></app-footer>

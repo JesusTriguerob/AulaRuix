@@ -21,60 +21,60 @@
           <th scope="col">13:30/14:30</th>
         </tr>
       <tbody class="text-center">
-        <tr *ngFor="let aula of aulas">
-          <td>{{aula.nombre}}</td>
-          <td *ngIf="aula.horas[0].reservado == 'DISPONIBLE'; else infoUno"><button class="btn btn-success" (click)="reservar(aula.id,1)">Reservar</button></td>
+        <tr *ngFor="let zona of zonas">
+          <td>{{zona.nombre}}</td>
+          <td *ngIf="zona.horas[0].reservado == 'DISPONIBLE'; else infoUno"><button class="btn btn-success" (click)="reservar(zona.id,1)">Reservar</button></td>
           <ng-template #infoUno>
           <td>
             <div class="" style="font-size: 12px;">
-              Reservado por  <br> <b>{{aula.horas[0].usuarioReserva}}</b>
+              Reservado por  <br> <b>{{zona.horas[0].usuarioReserva}}</b>
             </div>
           </td>
           </ng-template>
 
-          <td *ngIf="aula.horas[1].reservado == 'DISPONIBLE'; else infodos"><button class="btn btn-success" (click)="reservar(aula.id,2)">Reservar</button></td>
+          <td *ngIf="zona.horas[1].reservado == 'DISPONIBLE'; else infodos"><button class="btn btn-success" (click)="reservar(zona.id,2)">Reservar</button></td>
           <ng-template #infodos>
           <td>
             <!-- <button *ngIf="aula.horas[1].usuarioReserva === nombreUsuario" class="btn btn-danger">Devolver</button>-->
             <div class="" style="font-size: 12px;">
-              Reservado por  <br> <b>{{aula.horas[1].usuarioReserva}}</b>
+              Reservado por  <br> <b>{{zona.horas[1].usuarioReserva}}</b>
             </div>
           </td>
           </ng-template>
 
-          <td *ngIf="aula.horas[2].reservado == 'DISPONIBLE'; else infotres"><button class="btn btn-success" (click)="reservar(aula.id,3)">Reservar</button></td>
+          <td *ngIf="zona.horas[2].reservado == 'DISPONIBLE'; else infotres"><button class="btn btn-success" (click)="reservar(zona.id,3)">Reservar</button></td>
           <ng-template #infotres>
           <td>
             <div class="" style="font-size: 12px;">
-              Reservado por  <br> <b>{{aula.horas[2].usuarioReserva}}</b>
+              Reservado por  <br> <b>{{zona.horas[2].usuarioReserva}}</b>
             </div>
           </td>
           </ng-template>
           <td></td>
 
-          <td *ngIf="aula.horas[3].reservado == 'DISPONIBLE'; else infocuatro"><button class="btn btn-success" (click)="reservar(aula.id,4)">Reservar</button></td>
+          <td *ngIf="zona.horas[3].reservado == 'DISPONIBLE'; else infocuatro"><button class="btn btn-success" (click)="reservar(zona.id,4)">Reservar</button></td>
           <ng-template #infocuatro>
           <td>
             <div class="" style="font-size: 12px;">
-              Reservado por  <br> <b>{{aula.horas[3].usuarioReserva}}</b>
+              Reservado por  <br> <b>{{zona.horas[3].usuarioReserva}}</b>
             </div>
           </td>
           </ng-template>
 
-          <td *ngIf="aula.horas[4].reservado == 'DISPONIBLE'; else infocinco"><button class="btn btn-success" (click)="reservar(aula.id,5)">Reservar</button></td>
+          <td *ngIf="zona.horas[4].reservado == 'DISPONIBLE'; else infocinco"><button class="btn btn-success" (click)="reservar(zona.id,5)">Reservar</button></td>
           <ng-template #infocinco>
           <td>
             <div class="" style="font-size: 12px;">
-              Reservado por  <br> <b>{{aula.horas[4].usuarioReserva}}</b>
+              Reservado por  <br> <b>{{zona.horas[4].usuarioReserva}}</b>
             </div>
           </td>
           </ng-template>
 
-          <td *ngIf="aula.horas[5].reservado == 'DISPONIBLE'; else infoseis"><button class="btn btn-success" (click)="reservar(aula.id,6)">Reservar</button></td>
+          <td *ngIf="zona.horas[5].reservado == 'DISPONIBLE'; else infoseis"><button class="btn btn-success" (click)="reservar(zona.id,6)">Reservar</button></td>
           <ng-template #infoseis>
           <td>
             <div class="" style="font-size: 12px;">
-              Reservado por  <br> <b>{{aula.horas[5].usuarioReserva}}</b>
+              Reservado por  <br> <b>{{zona.horas[5].usuarioReserva}}</b>
             </div>
           </td>
           </ng-template>
@@ -84,7 +84,7 @@
   </table>
   </div>
   <div class="mt-3" *ngIf="isAdmin">
-    <button class="btn btn-outline-success btn-lg" routerLink="/aula/nuevo">
+    <button class="btn btn-outline-success btn-lg" routerLink="/zona/nuevo">
       <i class="fas fa-plus-circle"></i> Nueva Zona</button>
   </div>
 

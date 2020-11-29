@@ -31,6 +31,7 @@ public class UsuarioDto {
     private List<Rol> roles = new ArrayList();
     private String rolPrincipal;
     private List<Libro> libros = new ArrayList();
+    private boolean inComedor;
     
 	public UsuarioDto() {
 	}
@@ -38,7 +39,7 @@ public class UsuarioDto {
 	public UsuarioDto(@NotBlank String nombre, @NotBlank String apellido1, String apellido2, @NotBlank String dni,
 			String calle, String numCalle, String telefono1, Date fechaNac, String localidad, String provincia,
 			String codigoPostal, String nombreUsuario, String password, String email, List<Rol> roles, String rolPrincipal,
-			List<Libro> libros) {
+			List<Libro> libros, boolean inComedor) {
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
 		this.apellido2 = apellido2;
@@ -56,6 +57,7 @@ public class UsuarioDto {
 		this.roles = roles;
 		this.rolPrincipal = rolPrincipal;
 		this.libros = libros;
+		this.inComedor = inComedor;
 	}
 
 	public String getNombre() {
@@ -192,6 +194,14 @@ public class UsuarioDto {
 
 	public void setLibros(List<Libro> libros) {
 		this.libros = libros;
+	}
+
+	public boolean isInComedor() {
+		return inComedor;
+	}
+
+	public void setInComedor(boolean inComedor) {
+		this.inComedor = inComedor;
 	}
 	
 	

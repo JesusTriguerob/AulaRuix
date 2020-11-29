@@ -8,17 +8,17 @@ import javax.validation.constraints.NotBlank;
 import com.aularuix.back.entity.Hora;
 import com.aularuix.back.enums.Reservado;
 
-public class AulaDto {
+public class ZonaComunDto {
 
 	 @NotBlank
 	 private String nombre;
 	 private List<Hora> horas = new ArrayList();
 	 
-	 public AulaDto() {
+	 public ZonaComunDto() {
 		super();
 	 }
 
-	public AulaDto(@NotBlank String nombre, List<Hora> horas) {
+	public ZonaComunDto(@NotBlank String nombre, List<Hora> horas) {
 		super();
 		this.nombre = nombre;
 		this.horas = horas;

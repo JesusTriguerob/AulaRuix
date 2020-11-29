@@ -3,6 +3,7 @@ import { Libro } from '../models/libro';
 import { LibroService } from '../service/libro.service';
 import { ToastrService } from 'ngx-toastr';
 import { TokenService } from '../service/token.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-lista-libro',
@@ -45,19 +46,28 @@ export class ListaLibroComponent implements OnInit {
   }
 
   borrar(id: number) {
-    this.libroService.delete(id).subscribe(
-      data => {
-        this.toastr.success('Libro Eliminado', 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
-        this.cargarLibros();
-      },
-      err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
-          timeOut: 3000, positionClass: 'toast-top-center',
-        });
+    swal.fire({
+      title: 'Estas seguro?',
+      text: "¡Una vez borrado no hay vuelta atras!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, borrar'
+    }).then((result) => {
+      if (result.value) {
+        this.libroService.delete(id).subscribe(
+          response => {
+            this.cargarLibros();
+            swal.fire(
+              'Borrado!',
+              'El libro a sido borrado con éxito',
+              'success'
+            )
+          }
+        )
       }
-    );
+    })
   }
 
   alquilar(id: number) {
@@ -72,5 +82,4 @@ export class ListaLibroComponent implements OnInit {
       }
     );
   }
-
 }

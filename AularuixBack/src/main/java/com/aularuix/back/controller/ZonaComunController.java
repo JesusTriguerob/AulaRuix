@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aularuix.back.dto.AulaDto;
+import com.aularuix.back.dto.ZonaComunDto;
 import com.aularuix.back.dto.LibroDto;
 import com.aularuix.back.dto.Mensaje;
 import com.aularuix.back.dto.UsuarioDto;
-import com.aularuix.back.entity.Aula;
+import com.aularuix.back.entity.ZonaComun;
 import com.aularuix.back.entity.Hora;
 import com.aularuix.back.entity.Libro;
 import com.aularuix.back.enums.Alquilado;
@@ -32,16 +32,16 @@ import com.aularuix.back.enums.Estado;
 import com.aularuix.back.enums.Reservado;
 import com.aularuix.back.security.entity.Usuario;
 import com.aularuix.back.security.service.UsuarioService;
-import com.aularuix.back.service.AulaService;
+import com.aularuix.back.service.ZonaComunService;
 import com.aularuix.back.service.HoraService;
 
 @RestController
-@RequestMapping("/aula")
+@RequestMapping("/zona")
 @CrossOrigin(origins = "*")
-public class AulaController {
+public class ZonaComunController {
 	
 	@Autowired
-	AulaService aulaService;
+	ZonaComunService zonaComunService;
 	
 	@Autowired
 	HoraService horaService;
@@ -49,36 +49,36 @@ public class AulaController {
 	@Autowired
     UsuarioService usuarioService;
 	
-	@GetMapping("/aulas")
-	public ResponseEntity<List<Aula>> list() {
-		List<Aula> list = aulaService.list();
+	@GetMapping("/zonas")
+	public ResponseEntity<List<ZonaComun>> list() {
+		List<ZonaComun> list = zonaComunService.list();
 		return new ResponseEntity(list, HttpStatus.OK);
 	}
 
 	@PutMapping("/update/{id}")
-	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody AulaDto aulaDto) {
-		if (!aulaService.existsById(id))
+	public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody ZonaComunDto aulaDto) {
+		if (!zonaComunService.existsById(id))
 			return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
 		
-		Aula aula = aulaService.getOne(id).get();
+		ZonaComun aula = zonaComunService.getOne(id).get();
 		
-		aulaService.save(aula);
+		zonaComunService.save(aula);
 		return new ResponseEntity(new Mensaje("Horario actualizado"), HttpStatus.OK);
 	}
 	
 	@PostMapping("/reservar/{id}")
 	public ResponseEntity<?> reservar(@PathVariable("id")int id,@RequestBody int hora){
 		
-		 if(!aulaService.existsById(id))
+		 if(!zonaComunService.existsById(id))
 	            return new ResponseEntity(new Mensaje("no existe"), HttpStatus.NOT_FOUND);
 	        
 	        Mensaje response = new Mensaje(null);
 	        
-	        Aula aula = aulaService.getOne(id).get();
+	        ZonaComun zonaComun = zonaComunService.getOne(id).get();
 	        UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	        Usuario usuario = usuarioService.getByNombreUsuario(userDetails.getUsername()).get();
 			
-	        List<Hora> horas = aula.getHoras();
+	        List<Hora> horas = zonaComun.getHoras();
 	        
 	        for (Hora hor : horas) {
 				if (hor.getHora() == hora) {
@@ -87,21 +87,21 @@ public class AulaController {
 				}
 			}	
 
-	        aula.setHoras(horas);
+	        zonaComun.setHoras(horas);
 	        
-	        aulaService.save(aula);
+	        zonaComunService.save(zonaComun);
 	        return new ResponseEntity(response, HttpStatus.OK);
 		
 	}
 	
 	@PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/create")
-    public ResponseEntity<?> create(@RequestBody AulaDto aulaDto){
+    public ResponseEntity<?> create(@RequestBody ZonaComunDto aulaDto){
         if(StringUtils.isBlank(aulaDto.getNombre()))
             return new ResponseEntity(new Mensaje("el nombre es obligatorio"), HttpStatus.BAD_REQUEST);
         List<Hora> horas = generarHoras(aulaDto.getNombre());
-        Aula aula = new Aula(aulaDto.getNombre(), horas);
-        		aulaService.save(aula);
+        ZonaComun zonaComun = new ZonaComun(aulaDto.getNombre(), horas);
+        		zonaComunService.save(zonaComun);
         return new ResponseEntity(new Mensaje("Zona creada"), HttpStatus.OK);
     }
 	

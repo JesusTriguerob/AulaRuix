@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.aularuix.back.dto.AulaDto;
+import com.aularuix.back.dto.ZonaComunDto;
 import com.aularuix.back.dto.LibroDto;
 import com.aularuix.back.dto.Mensaje;
 import com.aularuix.back.dto.UsuarioDto;
-import com.aularuix.back.entity.Aula;
+import com.aularuix.back.entity.ZonaComun;
 import com.aularuix.back.entity.Hora;
 import com.aularuix.back.entity.Libro;
 import com.aularuix.back.enums.Alquilado;
@@ -31,7 +31,7 @@ import com.aularuix.back.enums.Estado;
 import com.aularuix.back.enums.Reservado;
 import com.aularuix.back.security.entity.Usuario;
 import com.aularuix.back.security.service.UsuarioService;
-import com.aularuix.back.service.AulaService;
+import com.aularuix.back.service.ZonaComunService;
 import com.aularuix.back.service.HoraService;
 
 @RestController

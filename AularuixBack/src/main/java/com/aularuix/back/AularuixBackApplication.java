@@ -8,10 +8,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
-import com.aularuix.back.entity.Aula;
+import com.aularuix.back.entity.ZonaComun;
 import com.aularuix.back.entity.Hora;
 import com.aularuix.back.enums.Reservado;
-import com.aularuix.back.service.AulaService;
+import com.aularuix.back.service.ZonaComunService;
 import com.aularuix.back.service.HoraService;
 
 @SpringBootApplication
@@ -21,7 +21,7 @@ public class AularuixBackApplication {
 	@Autowired
 	HoraService horaService;
 	@Autowired
-	AulaService aulaService;
+	ZonaComunService aulaService;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(AularuixBackApplication.class, args);
@@ -32,10 +32,10 @@ public class AularuixBackApplication {
         
 		//se lanza el monitor cada 24 horas, para limpiar la tabla del horario 
 		//y poner todas las zonas disponibles
-		List<Aula> zonas = aulaService.list();
+		List<ZonaComun> zonas = aulaService.list();
 		
-		for (Aula aula : zonas) {
-			Aula zona = aulaService.getOne(aula.getId()).get();
+		for (ZonaComun aula : zonas) {
+			ZonaComun zona = aulaService.getOne(aula.getId()).get();
 			
 			List<Hora> horas = zona.getHoras();
 			for (Hora hora : horas) {

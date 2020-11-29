@@ -4,6 +4,7 @@ import { UsuarioService } from '../service/usuario.service';
 import { ToastrService } from 'ngx-toastr';
 import { TokenService } from '../service/token.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import swal from'sweetalert2';
 
 @Component({
   selector: 'app-form-alumno',
@@ -37,7 +38,7 @@ export class FormALumnoComponent implements OnInit {
         this.nombreUsuario = this.tokenService.getUserName();
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
+        this.toastr.error(err.error.mensaje, 'Error en la busqueda de usuario.', {
           timeOut: 3000,  positionClass: 'toast-top-center',
         });
         this.volver();
@@ -53,13 +54,12 @@ export class FormALumnoComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params.id;
     this.usuarioService.update(id, this.usuario).subscribe(
       data => {
-        this.toastr.success('Usuario Actualizado', 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
+
         this.router.navigate(['/alumnos']);
+        swal.fire('Usuario actualizado' , `El usuario  ha sido actualizado con éxito!`, 'success' )
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
+        this.toastr.error(err.error.mensaje, 'Error en la actualizacion', {
           timeOut: 3000,  positionClass: 'toast-top-center',
         });
         // this.router.navigate(['/']);

@@ -75,6 +75,8 @@ public class Usuario {
     
     private String rolPrincipal;
     
+    private boolean inComedor;
+    
     public Usuario() {
     }
 
@@ -107,7 +109,7 @@ public class Usuario {
 
 	public Usuario(@NotNull String nombre, String apellido1, String apellido2, String dni, String calle,
 			String numCalle, String telefono1, Date fechaNac, String localidad, String provincia, String codigoPostal,
-			@NotNull String nombreUsuario, @NotNull String email, @NotNull String password, @NotNull List<Rol> roles, String rolPrincipal, List<Libro> libros) {
+			@NotNull String nombreUsuario, @NotNull String email, @NotNull String password, @NotNull List<Rol> roles, String rolPrincipal, List<Libro> libros, boolean inComedor) {
 		super();
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -126,6 +128,7 @@ public class Usuario {
 		this.roles = roles;
 		this.rolPrincipal = rolPrincipal;
 		this.libros = libros;
+		this.inComedor = inComedor;
 	}
 
 	
@@ -272,7 +275,14 @@ public class Usuario {
 	public void setLibros(List<Libro> libros) {
 		this.libros = libros;
 	}
+
+	public boolean isInComedor() {
+		return inComedor;
+	}
+
+	public void setInComedor(boolean inComedor) {
+		this.inComedor = inComedor;
+	}
     
-	
-	
+
 }

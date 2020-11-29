@@ -1,0 +1,163 @@
+<app-menu></app-menu>
+
+<div class="container" style="margin-top:10px">
+  <div class="text-center">
+			<h1 class="p-3 mb-2 bg-info text-white">Crear Usuario</h1>
+			<hr/>
+  </div>
+
+    <form (ngSubmit)="onCreate()" novalidate #f="ngForm">
+      <div class="well">
+          <div class="form-row">
+              <div class="col-xs-3 col-sm-3 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">Nombre*:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" id="nombre" name="nombre"
+                      [(ngModel)]="nombre" required>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">1º apellido*:</label>
+                    <div class="col-sm-8">
+                  <input type="text" name="apellido1" id="apellido1" class="form-control" tabindex="2" [(ngModel)]="apellido1" required>
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">2º apellido*:</label>
+                    <div class="col-sm-8">
+                  <input type="text" name="apellido2" id="apellido2" class="form-control" tabindex="3"  [(ngModel)]="apellido2" required >
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="form-row">
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">DNI*:</label>
+                    <div class="col-sm-8">
+                  <input type="text" name="dni" id="dni" class="form-control" tabindex="4" required [(ngModel)]="dni">
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">Telefono 1*:</label>
+                    <div class="col-sm-8">
+                  <input type="text" name="telefono1" id="telefono1" class="form-control" tabindex="5" required [(ngModel)]="telefono1">
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">Email*:</label>
+                    <div class="col-sm-8">
+                    <input type="email" class="form-control" name="email" required [(ngModel)]="email">
+                    </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="form-row">
+              <div class="col-xs-3 col-sm-3 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">Calle*:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control"  name="calle" required [(ngModel)]="calle" >
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">Número*:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control"  name="numCalle" required [(ngModel)]="numCalle">
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">Fecha de nacimiento*:</label>
+                    <div class="col-sm-8">
+                      <input type="date" class="form-control" name="fechaNac" required [(ngModel)]="fechaNac">
+                    </div>
+                </div>
+              </div>
+          </div>
+
+          <div class="form-row">
+              <div class="col-xs-3 col-sm-3 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">Código postal*:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control"  name="codigoPostal" required [(ngModel)]="codigoPostal">
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xs-3 col-sm-3 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">Localidad*:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control"  name="localidad" required [(ngModel)]="localidad">
+                    </div>
+                  </div>
+              </div>
+              <div class="col-xs-3 col-sm-4 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">Provincia*:</label>
+                    <div class="col-sm-8">
+                      <input type="text" class="form-control" name="provincia" required [(ngModel)]="provincia">
+                    </div>
+                  </div>
+              </div>
+          </div>
+
+
+            <div class="text-info text-center">
+              <hr>
+                <h1 class="p-3 mb-2 bg-info text-white">Rol</h1>
+                <hr/>
+            </div>
+
+            <div class="form-row">
+              <div class="col-xs-4 col-sm-4 col-md-4">
+                  <div class="form-group row">
+                      <label for="nombre" class="col-form-label col-sm-4 text-info">Rol de usuario*:</label>
+                    <div class="col-sm-8">
+                      <select  type="text" class="form-control" name="rolPrincipal" [(ngModel)]="rolPrincipal">
+                        <option value="Alumno">Alumno</option>
+                         <option value="Profesor">Profesor</option>
+                         <option value="Administracion">Administración</option>
+                      </select>
+                    </div>
+                  </div>
+              </div>
+            </div>
+        </div>
+
+
+    <!-- BOTONERA -->
+    <hr>
+    <div class="form-group row" style="margin-top: 50px;">
+      <div class="col-sm-1 text-left">
+        <button class="btn btn-rounded btn-outline-danger" type="button" [routerLink] ="['/alumnos']">Cancelar</button>
+      </div>
+      <div class="col-sm-1 text-left">
+        <button class="btn btn-rounded btn-outline-warning " type="reset">Limpiar</button>
+      </div>
+      <div class="col-sm-2 ">
+        <button *ngIf="isAdmin" class="btn btn-info btn-block" role="button" (click)='onRegister()'>Crear alumno</button>
+      </div>
+    </div>
+
+  </form>
+
+
+
+</div>
+
+<app-footer></app-footer>

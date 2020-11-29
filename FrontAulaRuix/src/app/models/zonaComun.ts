@@ -1,6 +1,6 @@
 import { Hora } from '../models/hora';
 
-export class Aula {
+export class ZonaComun {
     id?: number;
     nombre: string;
     horas: Hora[];

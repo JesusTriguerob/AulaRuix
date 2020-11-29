@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { AulaService } from '../service/aula.service';
+import { ZonaComunService } from '../service/zonaComun.service';
 import { HoraService } from '../service/hora.service';
-import { Aula } from '../models/aula';
+import { ZonaComun } from '../models/zonaComun';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { TokenService } from '../service/token.service';
 import { Hora } from '../models/hora';
 
 @Component({
-  selector: 'app-nuevo-aula',
-  templateUrl: './nuevo-aula.component.html',
-  styleUrls: ['./nuevo-aula.component.css']
+  selector: 'app-nuevo-zonas',
+  templateUrl: './nuevo-zonaComun.component.html',
+  styleUrls: ['./nuevo-zonaComun.component.css']
 })
-export class NuevoAulaComponent implements OnInit {
+export class NuevoZonaComunComponent implements OnInit {
 
   nombre = '';
   horas: Hora[] = [];
@@ -20,7 +20,7 @@ export class NuevoAulaComponent implements OnInit {
   isAdmin = false;
 
   constructor(
-    private aulaService: AulaService,
+    private zonaComunService: ZonaComunService,
     private horaService: HoraService,
     private toastr: ToastrService,
     private router: Router,
@@ -45,13 +45,13 @@ export class NuevoAulaComponent implements OnInit {
         this.isAdmin = true;
       }
     });
-    const aula = new Aula(this.nombre, this.horas);
-    this.aulaService.save(aula).subscribe(
+    const zonaComun = new ZonaComun(this.nombre, this.horas);
+    this.zonaComunService.save(zonaComun).subscribe(
       data => {
         this.toastr.success('Zona Creada', 'OK', {
           timeOut: 3000, positionClass: 'toast-top-center'
         });
-        this.router.navigate(['/aula']);
+        this.router.navigate(['/zona']);
       },
       err => {
         this.toastr.error(err.error.mensaje, 'Fail', {

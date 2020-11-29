@@ -1,32 +1,60 @@
 package com.aularuix.back.security.dto;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.Column;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 
+import com.aularuix.back.entity.Libro;
+import com.aularuix.back.security.entity.Rol;
+import com.sun.istack.NotNull;
+
 public class NuevoUsuario {
-    @NotBlank
+
     private String nombre;
-    @NotBlank
-    private String nombreUsuario;
-    @Email
-    private String email;
-    @NotBlank
-    private String password;
-    @NotBlank
+
     private String apellido1;
-    @NotBlank
+    
     private String apellido2;
-    @NotBlank
-    private String dni;
-    @NotBlank
-    private Date fechaNac;
-    @NotBlank
-    private String localidad;
-    private Set<String> roles = new HashSet<>();
+    
+    private String dni;    
+    
+    private String calle;  
+
+    private String numCalle;    
+    
+    private String telefono1;   
+    
+	@Column(name="fecha_nac")
+	@Temporal(TemporalType.DATE)
+	private Date fechaNac;	
+	
+    private String localidad;   
+    
+    private String provincia;   
+
+    private String codigoPostal;
+
+    private String nombreUsuario;
+    private String email;
+
+    private String password;
+  
+    private List<Rol> roles = new ArrayList<>();
+
+    private String rolPrincipal;
 
     public String getNombre() {
         return nombre;
@@ -58,14 +86,6 @@ public class NuevoUsuario {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public Set<String> getRoles() {
-        return roles;
-    }
-
-    public void setRoles(Set<String> roles) {
-        this.roles = roles;
     }
 
 	public String getApellido1() {
@@ -107,6 +127,63 @@ public class NuevoUsuario {
 	public void setLocalidad(String localidad) {
 		this.localidad = localidad;
 	}
-    
+
+	public String getCalle() {
+		return calle;
+	}
+
+	public void setCalle(String calle) {
+		this.calle = calle;
+	}
+
+	public String getNumCalle() {
+		return numCalle;
+	}
+
+	public void setNumCalle(String numCalle) {
+		this.numCalle = numCalle;
+	}
+
+	public String getTelefono1() {
+		return telefono1;
+	}
+
+	public void setTelefono1(String telefono1) {
+		this.telefono1 = telefono1;
+	}
+
+	public String getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(String provincia) {
+		this.provincia = provincia;
+	}
+
+	public String getCodigoPostal() {
+		return codigoPostal;
+	}
+
+	public void setCodigoPostal(String codigoPostal) {
+		this.codigoPostal = codigoPostal;
+	}
+
+	public String getRolPrincipal() {
+		return rolPrincipal;
+	}
+
+	public void setRolPrincipal(String rolPrincipal) {
+		this.rolPrincipal = rolPrincipal;
+	}
+
+	public List<Rol> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(List<Rol> roles) {
+		this.roles = roles;
+	}
+
+	
     
 }

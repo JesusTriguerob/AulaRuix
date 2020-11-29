@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Aula {
+public class ZonaComun {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,15 +24,15 @@ public class Aula {
 	private String nombre;
 	
 	@ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "aula_hora", joinColumns = @JoinColumn(name = "aula_id"),
+    @JoinTable(name = "zona_hora", joinColumns = @JoinColumn(name = "zona_id"),
     inverseJoinColumns = @JoinColumn(name = "hora_id"))
 	private List<Hora> horas = new ArrayList();
 	
-	public Aula() {
+	public ZonaComun() {
 		super();
 	}
 
-	public Aula(String nombre, List<Hora> horas) {
+	public ZonaComun(String nombre, List<Hora> horas) {
 		super();
 		this.nombre = nombre;
 		this.horas = horas;

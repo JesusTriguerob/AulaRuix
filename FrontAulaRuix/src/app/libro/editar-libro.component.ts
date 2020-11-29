@@ -3,6 +3,7 @@ import { Libro } from '../models/libro';
 import { LibroService } from '../service/libro.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import swal from'sweetalert2';
 
 @Component({
   selector: 'app-editar-libro',
@@ -27,7 +28,7 @@ export class EditarLibroComponent implements OnInit {
         this.libro = data;
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
+        this.toastr.error(err.error.mensaje, 'Error en la busqueda del libro', {
           timeOut: 3000,  positionClass: 'toast-top-center',
         });
         this.router.navigate(['/']);
@@ -39,13 +40,11 @@ export class EditarLibroComponent implements OnInit {
     const id = this.activatedRoute.snapshot.params.id;
     this.libroService.update(id, this.libro).subscribe(
       data => {
-        this.toastr.success('Libro Actualizado', 'OK', {
-          timeOut: 3000, positionClass: 'toast-top-center'
-        });
         this.router.navigate(['/lista']);
+        swal.fire('Libro actualizado' , `El libro  ha sido actualizado con éxito!`, 'success' )
       },
       err => {
-        this.toastr.error(err.error.mensaje, 'Fail', {
+        this.toastr.error(err.error.mensaje, 'Error en la actualizacion', {
           timeOut: 3000,  positionClass: 'toast-top-center',
         });
         // this.router.navigate(['/']);

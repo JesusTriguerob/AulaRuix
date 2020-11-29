@@ -62,25 +62,32 @@ public class AuthController {
             return new ResponseEntity(new Mensaje("ese nombre ya existe"), HttpStatus.BAD_REQUEST);
         if(usuarioService.existsByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("ese email ya existe"), HttpStatus.BAD_REQUEST);
-        Usuario usuario =
-                new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getNombreUsuario(), nuevoUsuario.getEmail(),
-                        passwordEncoder.encode(nuevoUsuario.getPassword()), nuevoUsuario.getApellido1(), nuevoUsuario.getApellido2(), nuevoUsuario.getDni(), nuevoUsuario.getFechaNac(), nuevoUsuario.getLocalidad());
+        //Usuario y contraseña generada automaticamente
+        String nombreUsuario = nuevoUsuario.getNombre().substring(0,3).concat(nuevoUsuario.getApellido1().substring(0,3)).concat(nuevoUsuario.getDni().substring(0,3));
+        String password = nuevoUsuario.getNombre().substring(0,3).concat(nuevoUsuario.getApellido1().substring(0,3)).concat(nuevoUsuario.getDni().substring(0,3));
+        
+        		
+        Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getApellido1(), nuevoUsuario.getApellido2(),
+        		nuevoUsuario.getDni(), nuevoUsuario.getCalle(), nuevoUsuario.getNumCalle(), nuevoUsuario.getTelefono1(), 
+        		nuevoUsuario.getFechaNac(), nuevoUsuario.getLocalidad(), nuevoUsuario.getProvincia(), nuevoUsuario.getCodigoPostal(), nombreUsuario, nuevoUsuario.getEmail(), passwordEncoder.encode(password), null, nuevoUsuario.getRolPrincipal(), null, false);
+        
         List<Rol> roles = new ArrayList();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());
-        if(nuevoUsuario.getRoles().contains("admin"))
-            roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
-        usuario.setRoles(roles);
-        if (!roles.isEmpty()) {
-			for (Rol rol : roles) {
-				usuario.setRolPrincipal(rol.getId() == ONE ? "Usuario" : "Administrador");
-			}
+        
+        if (usuario.getRolPrincipal().contains("Admin")) {
+        	roles.add(rolService.getByRolNombre(RolNombre.ROLE_ADMIN).get());
 		}
+        if (usuario.getRolPrincipal().contains("Profesor")) {
+        	roles.add(rolService.getByRolNombre(RolNombre.ROLE_PROF).get());
+		}
+
+        usuario.setRoles(roles);
         usuarioService.save(usuario);
         return new ResponseEntity(new Mensaje("usuario guardado"), HttpStatus.CREATED);
     }
 
     @PostMapping("/login")
-    public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){
+    public ResponseEntity<JwtDto> login(@Valid @RequestBody LoginUsuario loginUsuario, BindingResult bindingResult){     	
         if(bindingResult.hasErrors())
             return new ResponseEntity(new Mensaje("campos mal puestos"), HttpStatus.BAD_REQUEST);
         Authentication authentication =

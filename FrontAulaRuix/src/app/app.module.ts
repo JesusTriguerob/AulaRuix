@@ -23,8 +23,11 @@ import { AlumnosComponent } from './alumnos/alumnos.component';
 import { FormALumnoComponent } from './alumnos/form-alumno.component';
 import { InfoAlumnoComponent } from './alumnos/info-alumno.component';
 import { FooterComponent } from './footer/footer.component';
-import { AulaComponent } from './aula/aula.component';
-import { NuevoAulaComponent } from './aula/nuevo-aula.component';
+import { ZonaComunComponent } from './zonaComun/zonaComun.component';
+import { NuevoZonaComunComponent } from './zonaComun/nuevo-zonaComun.component';
+import { NuevoUsuarioComponent } from './alumnos/nuevo-usuario.component';
+import { ActividadesExtraComponent } from './actividades-extra/actividades-extra.component';
+import { ComedorComponent } from './actividades-extra/comedor.component';
 
 
 
@@ -43,8 +46,11 @@ import { NuevoAulaComponent } from './aula/nuevo-aula.component';
     FormALumnoComponent,
     InfoAlumnoComponent,
     FooterComponent,
-    AulaComponent,
-    NuevoAulaComponent
+    ZonaComunComponent,
+    NuevoZonaComunComponent,
+    NuevoUsuarioComponent,
+    ActividadesExtraComponent,
+    ComedorComponent
   ],
   imports: [
     BrowserModule,
