@@ -67,7 +67,7 @@ export class ZonaComunComponent implements OnInit {
     showCancelButton: true,
     confirmButtonColor: '#3085d6',
     cancelButtonColor: '#d33',
-    confirmButtonText: 'Sí, borrar'
+    confirmButtonText: 'Sí, reservar'
   }).then((result) => {
     if (result.value) {
 

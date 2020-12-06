@@ -16,6 +16,7 @@ import { NuevoZonaComunComponent } from './zonaComun/nuevo-zonaComun.component';
 import { NuevoUsuarioComponent } from './alumnos/nuevo-usuario.component';
 import { ActividadesExtraComponent } from './actividades-extra/actividades-extra.component';
 import { ComedorComponent } from './actividades-extra/comedor.component';
+import { AutobusComponent } from './actividades-extra/autobus.component';
 
 
 
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'usuario/nuevo', component: NuevoUsuarioComponent , canActivate: [guard], data: { expectedRol:['admin']} },
   { path: 'actExtra', component: ActividadesExtraComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user', 'profesor'] } },
   { path: 'comedor', component: ComedorComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user', 'profesor'] } },
+  { path: 'autobus', component: AutobusComponent, canActivate: [guard], data: { expectedRol: ['admin', 'user', 'profesor'] } },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 ];
 

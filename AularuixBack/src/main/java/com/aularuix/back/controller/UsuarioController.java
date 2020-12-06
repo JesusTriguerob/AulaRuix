@@ -74,7 +74,7 @@ public class UsuarioController {
 				usuarioDto.getFechaNac(), usuarioDto.getLocalidad(), usuarioDto.getProvincia(),
 				usuarioDto.getCodigoPostal(), usuarioDto.getNombreUsuario(), usuarioDto.getEmail(),
 				usuarioDto.getPassword(), usuarioDto.getRoles(), usuarioDto.getRolPrincipal(), usuarioDto.getLibros(),
-				usuarioDto.isInComedor());
+				usuarioDto.isInComedor(), usuarioDto.isInAutobus());
 
 		usuarioService.save(Usuario);
 

@@ -28,6 +28,7 @@ import { NuevoZonaComunComponent } from './zonaComun/nuevo-zonaComun.component';
 import { NuevoUsuarioComponent } from './alumnos/nuevo-usuario.component';
 import { ActividadesExtraComponent } from './actividades-extra/actividades-extra.component';
 import { ComedorComponent } from './actividades-extra/comedor.component';
+import { AutobusComponent } from './actividades-extra/autobus.component';
 
 
 
@@ -50,7 +51,8 @@ import { ComedorComponent } from './actividades-extra/comedor.component';
     NuevoZonaComunComponent,
     NuevoUsuarioComponent,
     ActividadesExtraComponent,
-    ComedorComponent
+    ComedorComponent,
+    AutobusComponent
   ],
   imports: [
     BrowserModule,

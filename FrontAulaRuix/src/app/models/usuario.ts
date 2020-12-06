@@ -18,5 +18,6 @@ export class Usuario {
   curso: string;
   rolPrincipal: string;
   inComedor: string;
+  inAutobus: string;
 
 }

@@ -76,6 +76,7 @@ public class Usuario {
     private String rolPrincipal;
     
     private boolean inComedor;
+    private boolean inAutobus;
     
     public Usuario() {
     }
@@ -109,7 +110,7 @@ public class Usuario {
 
 	public Usuario(@NotNull String nombre, String apellido1, String apellido2, String dni, String calle,
 			String numCalle, String telefono1, Date fechaNac, String localidad, String provincia, String codigoPostal,
-			@NotNull String nombreUsuario, @NotNull String email, @NotNull String password, @NotNull List<Rol> roles, String rolPrincipal, List<Libro> libros, boolean inComedor) {
+			@NotNull String nombreUsuario, @NotNull String email, @NotNull String password, @NotNull List<Rol> roles, String rolPrincipal, List<Libro> libros, boolean inComedor, boolean inAutobus) {
 		super();
 		this.nombre = nombre;
 		this.apellido1 = apellido1;
@@ -129,6 +130,7 @@ public class Usuario {
 		this.rolPrincipal = rolPrincipal;
 		this.libros = libros;
 		this.inComedor = inComedor;
+		this.inAutobus = inAutobus;
 	}
 
 	
@@ -283,6 +285,15 @@ public class Usuario {
 	public void setInComedor(boolean inComedor) {
 		this.inComedor = inComedor;
 	}
+
+	public boolean isInAutobus() {
+		return inAutobus;
+	}
+
+	public void setInAutobus(boolean inAutobus) {
+		this.inAutobus = inAutobus;
+	}
     
+	
 
 }

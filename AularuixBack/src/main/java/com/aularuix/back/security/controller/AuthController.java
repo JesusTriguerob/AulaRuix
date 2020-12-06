@@ -69,7 +69,7 @@ public class AuthController {
         		
         Usuario usuario = new Usuario(nuevoUsuario.getNombre(), nuevoUsuario.getApellido1(), nuevoUsuario.getApellido2(),
         		nuevoUsuario.getDni(), nuevoUsuario.getCalle(), nuevoUsuario.getNumCalle(), nuevoUsuario.getTelefono1(), 
-        		nuevoUsuario.getFechaNac(), nuevoUsuario.getLocalidad(), nuevoUsuario.getProvincia(), nuevoUsuario.getCodigoPostal(), nombreUsuario, nuevoUsuario.getEmail(), passwordEncoder.encode(password), null, nuevoUsuario.getRolPrincipal(), null, false);
+        		nuevoUsuario.getFechaNac(), nuevoUsuario.getLocalidad(), nuevoUsuario.getProvincia(), nuevoUsuario.getCodigoPostal(), nombreUsuario, nuevoUsuario.getEmail(), passwordEncoder.encode(password), null, nuevoUsuario.getRolPrincipal(), null, false, false);
         
         List<Rol> roles = new ArrayList();
         roles.add(rolService.getByRolNombre(RolNombre.ROLE_USER).get());

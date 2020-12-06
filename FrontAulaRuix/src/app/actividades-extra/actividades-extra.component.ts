@@ -5,6 +5,7 @@ import { TokenService } from '../service/token.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DietaService } from '../service/dieta.service';
+import { AutobusService } from '../service/autobus.service';
 import swal from 'sweetalert2';
 
 @Component({
@@ -17,10 +18,12 @@ export class ActividadesExtraComponent implements OnInit {
   usuario: Usuario;
   nombreUsuario: string;
   isComedor = false;
+  isAutobus = false;
 
   constructor(private usuarioService: UsuarioService,
     private tokenService: TokenService,
     private dietaService: DietaService,
+    private autobusService: AutobusService,
     private router: Router,
     private toastr: ToastrService) { }
 
@@ -35,7 +38,9 @@ export class ActividadesExtraComponent implements OnInit {
         this.usuario = data;
         if (this.usuario.inComedor == '1') {
           this.isComedor = true;
-          console.log('aaaaaaaa');
+        }
+        if (this.usuario.inAutobus == '1') {
+          this.isAutobus = true;
         }
       },
       err => {
@@ -44,11 +49,41 @@ export class ActividadesExtraComponent implements OnInit {
     );
   }
 
-  desInscribe(): void {
+  inscribeAutobus() {
+    this.autobusService.inscribe(this.nombreUsuario).subscribe(
+      data => {
+        this.router.navigate(['/actExtra']);
+        swal.fire('Registrado', `El usuario ha sido registrado en el autobus!`, 'success')
+        window.location.reload();
+      },
+      err => {
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000, positionClass: 'toast-top-center',
+        });
+      }
+    );
+  }
+
+  desInscribeComedor(): void {
     this.dietaService.desInscribe().subscribe(
       data => {
         this.router.navigate(['/actExtra']);
-        swal.fire('Registrado', `El usuario ha sido eliminado del comedor!`, 'success')
+        swal.fire('Eliminado', `El usuario ha sido eliminado del comedor!`)
+        window.location.reload();
+      },
+      err => {
+        this.toastr.error(err.error.mensaje, 'Fail', {
+          timeOut: 3000, positionClass: 'toast-top-center',
+        });
+      }
+    );
+  }
+
+  desInscribeAutobus(): void {
+    this.autobusService.desInscribe().subscribe(
+      data => {
+        this.router.navigate(['/actExtra']);
+        swal.fire('Eliminado', `El usuario ha sido eliminado del Autobus!`)
         window.location.reload();
       },
       err => {
