@@ -63,7 +63,7 @@ public class AuthController {
         if(usuarioService.existsByEmail(nuevoUsuario.getEmail()))
             return new ResponseEntity(new Mensaje("ese email ya existe"), HttpStatus.BAD_REQUEST);
         //Usuario y contraseña generada automaticamente
-        String nombreUsuario = nuevoUsuario.getNombre().substring(0,3).concat(nuevoUsuario.getApellido1().substring(0,3)).concat(nuevoUsuario.getDni().substring(0,3));
+        String nombreUsuario = nuevoUsuario.getNombre().substring(0,3).concat(nuevoUsuario.getApellido1().substring(0,3));
         String password = nuevoUsuario.getNombre().substring(0,3).concat(nuevoUsuario.getApellido1().substring(0,3)).concat(nuevoUsuario.getDni().substring(0,3));
         
         		
