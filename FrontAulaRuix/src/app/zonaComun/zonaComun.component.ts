@@ -61,7 +61,7 @@ export class ZonaComunComponent implements OnInit {
 
   reservar(id: number, hora: number) {
     swal.fire({
-    title: 'Estas seguro que quieres alquilar esta zona',
+    title: '¿Estas seguro que quieres alquilar esta zona?',
     text: "¡Una vez alquilado no hay vuelta atras!",
     icon: 'warning',
     showCancelButton: true,
@@ -76,7 +76,7 @@ export class ZonaComunComponent implements OnInit {
           this.cargarZonas();
           swal.fire(
             'Alquilado!',
-            'La zona a sido alquilada con éxito',
+            'La zona ha sido alquilada con éxito',
             'success'
           )
         }

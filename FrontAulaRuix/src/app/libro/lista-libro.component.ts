@@ -61,7 +61,7 @@ export class ListaLibroComponent implements OnInit {
             this.cargarLibros();
             swal.fire(
               'Borrado!',
-              'El libro a sido borrado con éxito',
+              'El libro ha sido borrado con éxito',
               'success'
             )
           }
